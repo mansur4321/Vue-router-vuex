@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid>
+  <v-container class="container-wrapper" fluid>
     <h1>
         <p class="main-title">
             LeadHit
         </p>
-
-        <formA/>
     </h1>
+
+    <formA/>
   </v-container>
 </template>
 
@@ -24,10 +24,13 @@ export default {
 <style>
 
     .main-title {
-        padding-left: 30px;
-        font-size: 35px;
+        font-size: 45px;
         color: #000!important;
-        margin-bottom: 50px;
+        margin-bottom: 70px!important;
+    }
+
+    .container-wrapper {
+        padding: 30px 20px 0!important;
     }
 
 </style>

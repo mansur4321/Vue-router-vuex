@@ -5,7 +5,7 @@ import Authorization from './pages/Authorization';
 
 Vue.use(VueRouter);
 
-const routers = [
+const routes = [
     {
         path: '/',
         component: Authorization,
@@ -19,5 +19,5 @@ const routers = [
 
 export default new VueRouter({
     mode: 'history',
-    routers,
+    routes,
 })
