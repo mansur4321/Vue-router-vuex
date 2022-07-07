@@ -17,15 +17,15 @@ export class RequestApiClass {
             headers: this.headers,
         });
 
-        let rezult = await response.json();
-        return rezult;
+        let result = await response.json();
+        return result;
     }
     //Закончился срок действия определённого вида ответов, теперь нужное сообщение не приходит.
     //Поэтому поменял местами true и false
     async requestId() {
-        let rezult = await this.getRequest();
+        let result = await this.getRequest();
 
-        if (rezult.message === 'ok') {
+        if (result.message === 'ok') {
             return false;//true
         } else {
             return true;//false

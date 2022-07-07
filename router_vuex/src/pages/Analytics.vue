@@ -6,22 +6,24 @@
         </p>
     </h1>
 
-    <chart 
-        @varning="varning"
-    ></chart>
+    <chart></chart>
   </v-container>
 </template>
 
 <script>
 import chart from '../components/chart.vue'
+import { LocalStorageManage } from '../API/localStorage/localStorage';
 
 export default {
     components: { chart },
     name: 'Analytics',
 
-    methods: {
-        varning() {
-            this.$emit('varnings');
+    created() {
+        let storageM = new LocalStorageManage('');
+
+        if(!storageM.existenceCheck('')) {
+            storageM.setItemData('warning', 'is');
+            window.location.href = '/';
         }
     },
 }

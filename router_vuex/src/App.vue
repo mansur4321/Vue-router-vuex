@@ -1,9 +1,8 @@
 <template>
   <v-app>
     <div class="alert-wrapper"
-      v-if="varningField"
       :class="{
-        'opacity': varningField, 
+        'opacity': warningField, 
       }"
     >
       <v-alert
@@ -11,18 +10,19 @@
         outlined
         type="error"
       >
-        I'm a dense alert with the <strong>outlined</strong> prop and a <strong>type</strong> of error
+        Доступ <strong>запрещён</strong>. Не установлен <strong>ID</strong>, пройдите регистрацию.
       </v-alert>
     </div>
     <navBar/>
     <v-container>
-      <router-view @varnings="varning"/>
+      <router-view/>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import navBar from './components/navBar';
+import { LocalStorageManage } from './API/localStorage/localStorage';
 
 
 export default {
@@ -33,15 +33,26 @@ export default {
   },
 
   data: () => ({
-    varningField: false,
+    warningField: false,
   }),
 
+  mounted() {
+    let storage = new LocalStorageManage('');
+
+    if (storage.existenceCheck('warning')) {
+      this.warning();
+      storage.delete('warning');
+    }
+  },
+
   methods: {
-    varning() {
-      this.varningField = !this.varningField;
+    warning() {
+      setTimeout(() => {
+        this.warningField = !this.warningField;
+      },1000);
 
       setTimeout(() => {
-        this.varningField = !this.varningField;
+        this.warningField = !this.warningField;
       },10000);
     }
   }
@@ -60,11 +71,11 @@ export default {
     right: 5%;
     width: 485px;
     opacity: 0;
-    transition: .2s;
+    transition: .4s;
   }
 
   .opacity {
     opacity: 1;
-    top: 12%;
+    top: 15%;
   }
 </style>

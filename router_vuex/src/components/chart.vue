@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { LocalStorageManage } from '../API/localStorage/localStorage';
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -15,15 +14,6 @@ am4core.useTheme(am4themes_animated);
 
 export default {
     name: 'Chart',
-
-    created() {
-        let storageM = new LocalStorageManage('');
-
-        if(!storageM.existenceCheck()) {
-            this.$emit('varning');
-            window.location.href = '/';    
-        }
-    },
 
     mounted() {
         let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);

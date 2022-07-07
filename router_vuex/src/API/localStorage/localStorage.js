@@ -6,16 +6,26 @@ export class LocalStorageManage {
         this.itemId = id;
     }
 
-    setItemId(name, id) {
-        localStorage.setItem(name, id);
+    setItemData(name, data) {
+        localStorage.setItem(name, data);
     }
 
     getItemId(name) {
         return localStorage.getItem(name);
     }
 
-    existenceCheck() {
-        let item = this.getItemId(this.itemName);
+    deleteItem(name) {
+        return localStorage.removeItem(name);
+    }
+
+    existenceCheck(name) {
+        let item;
+
+        if (name != '') {
+            item = this.getItemId(name);
+        } else {
+            item = this.getItemId(this.itemName);
+        }
 
         if (item) {
             return true;
@@ -24,11 +34,20 @@ export class LocalStorageManage {
         }
     }
 
+    delete(name) {
+
+        if (!this.existenceCheck(name)) {
+            return;
+        }
+
+        this.deleteItem(name);
+    }
+
     setId() {
         if (this.getItemId(this.itemName) == this.itemId) {
             return;
         } else {
-            this.setItemId(this.itemName, this.itemId);
+            this.setItemData(this.itemName, this.itemId);
         }
     }
 }

@@ -6,7 +6,9 @@
         </p>
     </h1>
 
-    <formA/>
+    <formA
+        @redirectpage="redirectPage($event)"
+    />
   </v-container>
 </template>
 
@@ -17,6 +19,19 @@ export default {
     name: 'Authorization',
     components: {
         FormA,
+    },
+
+    methods: {
+
+        storageAddItem(item) {
+            this.$store.commit('storageAddItem', item);
+        },
+
+        redirectPage(strID) {
+            this.storageAddItem(strID);
+
+            window.location.href = '/analytics';
+        }
     }
 }
 </script>

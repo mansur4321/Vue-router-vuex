@@ -22,7 +22,7 @@
 
 <script>
 import { RequestApiClass } from '../API/fetch/fetch.js';
-import { LocalStorageManage } from '../API/localStorage/localStorage';
+
 
 export default {
     name: 'FormA',
@@ -55,8 +55,8 @@ export default {
             }
         },
 
-        pageRedirect(){
-            window.location.href = '/analytics';
+        pageRedirectEmit(){
+            this.$emit('redirectpage', this.stringID);
         },
 
         async actionManage() {
@@ -64,10 +64,7 @@ export default {
             let boolReq = await request.requestId();
 
             if(boolReq) {
-                let storage = new LocalStorageManage(this.stringID);
-                storage.setId();
-
-                this.pageRedirect();
+                this.pageRedirectEmit();
             } else {
                 alert('Не правильный ID');
             }
