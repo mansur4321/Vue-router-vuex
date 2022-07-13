@@ -63,6 +63,9 @@ export default {
             let request = new RequestApiClass(this.stringID);
             let boolReq = await request.requestId();
 
+            this.$store.state.data = request.data;
+            this.$store.commit('storageAddData');
+
             if(boolReq) {
                 this.pageRedirectEmit();
             } else {
